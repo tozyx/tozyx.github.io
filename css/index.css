@@ -1,0 +1,285 @@
+/* 该文件同时为index与TandC页面提供CSS样式，修改时请注意！ */
+/* 该文件同时为index与TandC页面提供CSS样式，修改时请注意！ */
+/* 该文件同时为index与TandC页面提供CSS样式，修改时请注意！ */
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+body {
+    overflow-x: hidden;
+}
+/* 全部内容Box */
+.Abox {
+    height: 100vh;
+    overflow-x: hidden;
+    perspective: 3px;
+}
+
+.top_nav {
+    height: 170px;
+    width: 100%;
+    background-color: #262736;
+    display: flex;
+    justify-content: center;
+}
+
+.nav_center {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#top_hidari {
+    height: 100%;
+    width: 300px;
+    /* background-color: rgba(0, 255, 221, 0.342); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#top_migi {
+    height: 100%;
+    width: 350px;
+    right: 60px;
+    /* background-color: rgba(0, 110, 255, 0.342); */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.X_color {
+    background-image: linear-gradient(to right, rgb(96, 99, 255), rgb(214, 110, 255));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.nav_center a {
+    font-size: 20px;
+    color: rgb(256, 256, 0);
+    margin: 20px;
+}
+.nav_center a:hover {
+    color: #d2d5ff;
+}
+
+#top_hedari {
+    font-size: 30px;
+}
+
+#top_name {
+    display: flex;
+    flex-direction: row;
+    color: rgb(256, 256, 0);
+}
+
+@media screen and (max-width: 656px){
+    .nav_center {
+        height: 100%;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #top_hidari {
+        height: 60%;
+        /* background-color: rgba(0, 255, 221, 0.342); */
+        position: relative;
+    }
+    #top_name {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        flex-direction: row;
+    }
+    #top_migi {
+        height: 40%;
+    }
+}
+
+#backg {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#backg img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.one_box {
+    height: 1200px;
+    width: 100%;
+    position: relative;
+    background-color: #2b2c3a;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.up_box {
+    height: 100%;
+    width: 100%;
+    z-index: 8;
+    position: absolute;
+    top: 60px;
+    overflow-y: hidden;
+    padding-top: 70px;
+}
+@keyframes up_ {
+    from {
+        opacity: 0;
+        transform: translate3d(0,100%,0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.up_box {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-name: up_;
+}
+
+.con_box {
+    height: 300px;
+    width: 60%;
+    position: relative;
+    margin-bottom: 60px;
+    left: 10%;
+    background-color: #262736;
+    border-radius: 40px;
+    background: #262736;
+    box-shadow:  23px 23px 46px #21222f,
+                -23px -23px 46px #2b2c3d;
+    transition: transform .2s;
+}
+.con_box:hover {
+    transform: scale(1.05);
+}
+@media screen and (max-width:1090px){
+    .con_box {
+        width: 654px;
+        position: relative;
+        left: 50%;
+        margin-left: -327px;
+    }
+}
+
+@media screen and (max-width:654px){
+    .con_box {
+        width: 100%;
+        position: relative;
+        left: 0;
+        margin: auto;
+        margin-bottom: 60px;
+    }
+}
+
+.li_box {
+    height: 100%;
+    padding: 30px;
+}
+/* 正文样式 */
+.li_box h1,.li_box h3,.li_box a,.li_box p {
+    color: rgb(210,213,255);
+}
+.li_box h1:hover {
+    color: rgb(255, 185, 185);
+}
+
+/* 装饰样式-挂件 */
+.orna_box {
+    position: absolute;
+    width: 536px;
+    height: 311px;
+    bottom: 0;
+    right: 0;
+}
+
+/* 页尾 */
+.last_box {
+    height: 200px;
+    width: 100%;
+    color: rgb(256, 256, 0);
+    background-color: #212230;
+    box-shadow: 0px 0px 20px #313246;
+    position: relative;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mar{
+    margin: 20px;
+}
+@media screen and (max-width:650px){
+    .last_box {
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+    .mar {
+        margin: 0px;
+    }
+}
+
+#last_one {
+    display: flex;
+    flex-direction: row;
+}
+
+#lost_color {
+    color: rgb(210,213,255);
+}
+#lost_color:hover {
+    background-image: linear-gradient(to right, rgb(119, 121, 252), rgb(218, 125, 255));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* 代码块的样式内容 */
+.code_block {
+    background: #1f2031;
+    color: rgb(227, 229, 252);
+    font-family: Consolas;
+    text-align: left;
+    margin: 0.4em;
+    padding-left: 0.8em;
+    border-radius: 5px;
+    counter-reset: line;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 0.2;
+}
+.code_block span {
+    display: block;
+    line-height: 1.5rem;
+    white-space: pre;
+}
+.code_block span::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 3em;
+    text-align: right;
+    border-right: 2px solid #999;
+    padding-right: .8em;
+    margin-right: 1em;
+    color: #999;
+}
