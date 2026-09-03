@@ -98,6 +98,18 @@ pnpm preview
 
 语言切换会保存在浏览器本地存储中。首次访问时，网站根据浏览器首选语言选择中文或英文。
 
+## 参考与致谢
+
+本项目的在线练习功能在设计和实现过程中参考了以下优秀的开源项目：
+
+- [Specy/genshin-music](https://github.com/Specy/genshin-music)：参考了原神 21 键乐器布局、琴键图标处理、乐器音色配置和交互设计；练习页使用的部分图标与音频资源亦来源于该项目。感谢作者 Specy 及所有贡献者的工作。
+- [VanillaNahida/WindsongLyre-Sim](https://github.com/VanillaNahida/WindsongLyre-Sim)：在早期调研阶段参考了网页琴键界面和乐器资源组织方式。感谢作者 VanillaNahida 及所有贡献者提供的思路与实现。
+
+GenshinPiano 的网站结构和练习功能为独立实现。第三方资源的具体来源、许可与版权说明请查看 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+
+## 开源许可
+
+本仓库自行编写的网站代码采用 [MIT License](./LICENSE) 开源。第三方图标、音频及其他资源不因本仓库采用 MIT License 而改变其原有版权或许可条件，详情请参阅 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
 ## 发布
 
 `GPiano` 是当前网站发布分支。推送到该分支后，GitHub Actions 会：
