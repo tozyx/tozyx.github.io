@@ -2,8 +2,7 @@
 interface Props { locale: 'zh' | 'en'; }
 const { locale } = Astro.props;
 const zh = locale === 'zh';
-const primary = zh ? '/screenshots/editor-zh.png' : '/screenshots/editor-en.png';
-const alternate = zh ? '/screenshots/editor-en.png' : '/screenshots/editor-zh.png';
+const initialSlide = zh ? 0 : 1;
 ---
 <section class="product-showcase shell" aria-labelledby="product-showcase-title">
   <div class="section-heading">
@@ -11,11 +10,37 @@ const alternate = zh ? '/screenshots/editor-en.png' : '/screenshots/editor-zh.pn
     <h2 id="product-showcase-title">{zh ? '专注于乐谱，也照顾每一个操作细节' : 'Focused on the score, polished in every detail'}</h2>
     <p>{zh ? '实际运行于 Windows 的 GenshinPiano v3：曲谱库、21 键卷帘编辑、试听和演奏控制集中在同一工作区。' : 'GenshinPiano v3 running on Windows, with the score library, 21-key piano roll, preview, and performance controls in one workspace.'}</p>
   </div>
-  <figure class="product-shot">
-    <img src={primary} alt={zh ? 'GenshinPiano v3 中文界面，展示曲谱库和 21 键卷帘编辑器' : 'GenshinPiano v3 English interface showing the score library and 21-key piano-roll editor'} width="1476" height="900" loading="lazy" decoding="async" />
+  <figure class="product-shot" data-product-carousel data-initial-slide={initialSlide}>
+    <div class="product-shot-viewport">
+      <div class="product-shot-track" data-shot-track>
+        <div class="product-slide"><img src="/screenshots/editor-zh.png" alt="GenshinPiano v3 中文界面，展示曲谱库和 21 键卷帘编辑器" width="1476" height="900" loading="lazy" decoding="async" /></div>
+        <div class="product-slide"><img src="/screenshots/editor-en.png" alt="GenshinPiano v3 English interface showing the score library and 21-key piano-roll editor" width="1476" height="900" loading="lazy" decoding="async" /></div>
+      </div>
+    </div>
     <figcaption>
-      <span>{zh ? 'GenshinPiano v3 实际运行截图' : 'GenshinPiano v3 — actual application screenshot'}</span>
-      <a href={alternate}>{zh ? '查看英文界面 →' : 'View Chinese interface →'}</a>
+      <span>{zh ? 'GenshinPiano v3 实际运行截图' : 'GenshinPiano v3 — actual application screenshots'}</span>
+      <div class="shot-switch" role="group" aria-label={zh ? '界面语言' : 'Interface language'}>
+        <button type="button" data-shot-index="0">中文</button>
+        <button type="button" data-shot-index="1">English</button>
+      </div>
     </figcaption>
   </figure>
 </section>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-product-carousel]').forEach(carousel => {
+    const track=carousel.querySelector<HTMLElement>('[data-shot-track]');
+    const buttons=[...carousel.querySelectorAll<HTMLButtonElement>('[data-shot-index]')];
+    let current=Number(carousel.dataset.initialSlide)||0;
+    let pointerStart:number|null=null;
+    const show=(index:number)=>{
+      current=Math.max(0,Math.min(1,index));
+      if(track) track.style.transform='translateX(-'+(current*50)+'%)';
+      buttons.forEach((button,i)=>{button.classList.toggle('active',i===current);button.setAttribute('aria-pressed',String(i===current));});
+    };
+    buttons.forEach((button,i)=>button.addEventListener('click',()=>show(i)));
+    carousel.addEventListener('pointerdown',event=>{pointerStart=event.clientX;});
+    carousel.addEventListener('pointerup',event=>{if(pointerStart===null)return;const delta=event.clientX-pointerStart;if(Math.abs(delta)>45)show(delta<0?current+1:current-1);pointerStart=null;});
+    carousel.addEventListener('pointercancel',()=>{pointerStart=null;});
+    show(current);
+  });
+</script>
