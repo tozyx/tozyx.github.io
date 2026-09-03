@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const releaseUrl = 'https://github.com/tozyx/GenshinPiano/releases/latest';
+---
+<BaseLayout title="下载 · GenshinPiano" description="下载适用于 Windows 10/11 x64 的 GenshinPiano 自包含版或框架依赖版。">
+  <section class="page-hero shell"><span class="eyebrow">DOWNLOAD</span><h1>选择适合你的版本</h1><p>两个版本功能一致，均为便携 ZIP。首次使用推荐自包含版。</p></section>
+  <section class="section shell download-section">
+    <div class="release-bar" aria-live="polite"><div><span class="release-kicker">最新稳定版</span><strong data-release-version>正在获取版本信息…</strong></div><div class="release-meta"><span data-release-date>连接 GitHub Releases</span><a href={releaseUrl}>查看全部版本 →</a></div></div>
+    <div class="download-switch" role="group" aria-label="版本选择"><button class="active" data-target="standalone" aria-pressed="true">自包含版</button><button data-target="framework" aria-pressed="false">框架依赖版</button></div>
+    <div class="download-panels">
+      <article class="download-card active" data-panel="standalone"><div><span class="badge">推荐</span><h2>Windows x64 自包含版</h2><p>内置 .NET 运行时，解压即可使用，适合绝大多数用户。</p><ul><li>Windows 10/11 x64</li><li>无需另装 .NET Desktop Runtime</li><li>完整自动更新与回滚支持</li></ul><div class="asset-links" data-sidecars="standalone" hidden></div></div><a class="button button-primary" data-download="standalone" href={releaseUrl}><span>前往 GitHub Releases</span><small></small></a></article>
+      <article class="download-card" data-panel="framework"><div><span class="badge muted">体积更小</span><h2>Windows x64 框架依赖版</h2><p>需要系统已安装 .NET 10 Desktop Runtime，适合熟悉运行环境的用户。</p><ul><li>Windows 10/11 x64</li><li>需要 .NET 10 Desktop Runtime</li><li>功能与自包含版一致</li></ul><div class="asset-links" data-sidecars="framework" hidden></div></div><a class="button button-primary" data-download="framework" href={releaseUrl}><span>前往 GitHub Releases</span><small></small></a></article>
+    </div>
+    <p class="release-error" data-release-error hidden>暂时无法读取最新版本，下载按钮已切换到 GitHub Releases 页面。</p>
+    <aside class="notice"><strong>安装方式</strong><ol><li>下载对应 ZIP 并完整解压。</li><li>放入具有写入权限的目录，不要放在 Program Files。</li><li>运行 <code>GenshinPiano.exe</code>。</li></ol><p>正式发布包同时提供 SHA-256 与 RSA 签名验证。</p></aside>
+  </section>
+  <script>
+    const repoApi = 'https://api.github.com/repos/tozyx/GenshinPiano/releases/latest';
+    const releaseFallback = 'https://github.com/tozyx/GenshinPiano/releases/latest';
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-target]');
+    const panels = document.querySelectorAll<HTMLElement>('[data-panel]');
+    buttons.forEach((button) => button.addEventListener('click', () => {
+      buttons.forEach((item) => { const active = item === button; item.classList.toggle('active', active); item.setAttribute('aria-pressed', String(active)); });
+      panels.forEach((panel) => panel.classList.toggle('active', panel.dataset.panel === button.dataset.target));
+    }));
+    const size = (bytes:number) => `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+    const findZip = (assets:any[], kind:string) => assets.find((asset) => kind === 'framework' ? /-win-x64-framework\.zip$/.test(asset.name) : /-win-x64\.zip$/.test(asset.name) && !asset.name.includes('-framework'));
+    const setAsset = (assets:any[], kind:string) => {
+      const zip = findZip(assets, kind); if (!zip) return;
+      const anchor = document.querySelector<HTMLAnchorElement>(`[data-download="${kind}"]`); if (anchor) { anchor.href = zip.browser_download_url; anchor.querySelector('span')!.textContent = '直接下载 ZIP'; anchor.querySelector('small')!.textContent = size(zip.size); }
+      const sidecars = document.querySelector<HTMLElement>(`[data-sidecars="${kind}"]`); const hash = assets.find((asset) => asset.name === `${zip.name}.sha256`); const signature = assets.find((asset) => asset.name === `${zip.name}.sig`);
+      if (sidecars && (hash || signature)) { sidecars.hidden = false; sidecars.replaceChildren(); [[hash,'SHA-256'],[signature,'RSA 签名']].forEach(([asset,label]) => { if (!asset) return; const link=document.createElement('a'); link.href=asset.browser_download_url; link.textContent=String(label); sidecars.append(link); }); }
+    };
+    fetch(repoApi, { headers: { Accept: 'application/vnd.github+json' } }).then((response) => { if (!response.ok) throw new Error(String(response.status)); return response.json(); }).then((release) => {
+      const version = document.querySelector<HTMLElement>('[data-release-version]'); const date = document.querySelector<HTMLElement>('[data-release-date]');
+      if (version) version.textContent = release.name || release.tag_name; if (date) date.textContent = `发布于 ${new Intl.DateTimeFormat('zh-CN',{dateStyle:'long'}).format(new Date(release.published_at))}`;
+      setAsset(release.assets, 'standalone'); setAsset(release.assets, 'framework');
+    }).catch(() => { const version=document.querySelector<HTMLElement>('[data-release-version]'); const error=document.querySelector<HTMLElement>('[data-release-error]'); if(version) version.textContent='从 Releases 获取'; if(error) error.hidden=false; document.querySelectorAll<HTMLAnchorElement>('[data-download]').forEach((a)=>a.href=releaseFallback); });
+  </script>
+</BaseLayout>

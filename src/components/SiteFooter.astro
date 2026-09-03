@@ -1,0 +1,5 @@
+---
+interface Props { locale: 'zh' | 'en'; }
+const { locale } = Astro.props; const prefix=locale==='en'?'/en':'';
+---
+<footer class="site-footer"><div class="shell footer-grid"><div><a class="brand footer-brand" href={`${prefix}/`}><img src="/app-icon.png" alt="" width="34" height="34" /><span>GenshinPiano</span></a><p>{locale==='en'?'A composition and performance tool for Genshin instruments on Windows.':'面向 Windows 的原神乐器编曲与演奏工具。'}</p></div><div class="footer-links"><a href={`${prefix}/guide/`}>{locale==='en'?'User guide':'使用指南'}</a><a href={`${prefix}/privacy/`}>{locale==='en'?'Privacy':'隐私说明'}</a><a href="https://github.com/tozyx/GenshinPiano/issues">{locale==='en'?'Report an issue':'问题反馈'}</a><a href="https://github.com/tozyx/GenshinPiano">{locale==='en'?'Source code':'源代码'}</a></div></div><div class="shell footer-bottom"><span>© {new Date().getFullYear()} GenshinPiano</span><span>MIT License · {locale==='en'?'Unofficial fan project':'非米哈游官方项目'}</span></div></footer>

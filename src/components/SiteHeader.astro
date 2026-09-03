@@ -1,0 +1,17 @@
+---
+interface Props { locale: 'zh' | 'en'; }
+const { locale } = Astro.props;
+const pathname = Astro.url.pathname;
+const prefix = locale === 'en' ? '/en' : '';
+const labels = locale === 'en' ? ['Features','Download','Guide','Changelog','FAQ'] : ['功能','下载','指南','更新日志','FAQ'];
+const routes = ['/features/','/download/','/guide/','/changelog/','/faq/'];
+const links = routes.map((route,index) => [`${prefix}${route}`, labels[index]]);
+const alternatePath = locale === 'en' ? (pathname.replace(/^\/en(?=\/|$)/,'') || '/') : (pathname === '/' ? '/en/' : `/en${pathname}`);
+---
+<header class="site-header shell"><a class="brand" href={`${prefix}/`} aria-label={locale==='en'?'GenshinPiano home':'GenshinPiano 首页'}><img src="/app-icon.png" alt="" width="38" height="38" /><span>GenshinPiano</span></a><nav class="nav" aria-label={locale==='en'?'Main navigation':'主导航'}>{links.map(([href,label]) => <a href={href} aria-current={pathname.startsWith(href) ? 'page' : undefined}>{label}</a>)}<a class="language-switch" href={alternatePath} data-language-switch data-locale={locale==='en'?'zh':'en'}>{locale==='en'?'中文':'EN'}</a></nav><button class="menu-button" type="button" aria-label={locale==='en'?'Open navigation':'打开导航'} aria-expanded="false">☰</button></header>
+<div class="mobile-nav" hidden>{links.map(([href,label]) => <a href={href}>{label}</a>)}<a class="language-switch" href={alternatePath} data-language-switch data-locale={locale==='en'?'zh':'en'}>{locale==='en'?'切换至中文':'Switch to English'}</a></div>
+<script>
+  const button=document.querySelector<HTMLButtonElement>('.menu-button'); const menu=document.querySelector<HTMLElement>('.mobile-nav');
+  button?.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));if(menu)menu.hidden=open;});
+  document.querySelectorAll<HTMLAnchorElement>('[data-language-switch]').forEach(link=>link.addEventListener('click',()=>localStorage.setItem('gpiano-locale',link.dataset.locale||'zh')));
+</script>

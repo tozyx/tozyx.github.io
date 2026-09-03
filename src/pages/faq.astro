@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const faqs = [['软件需要安装吗？','不需要。发布包采用便携 ZIP，完整解压后运行 GenshinPiano.exe 即可。'],['为什么不建议放在 Program Files？','设置、日志、更新缓存和附加包保存在程序目录，Program Files 通常没有普通用户写入权限。'],['支持哪些乐谱格式？','可编辑 .gpiano，支持 MIDI、MusicXML 和旧版 .GenshinPiano 导入。'],['会自动控制游戏吗？','只有你主动开始演奏后，软件才会向受支持且位于前台的游戏窗口发送键盘输入；窗口失焦会立即暂停。'],['OCR 是否必须安装？','不是。OCR 是独立可选附加包，不会增加主程序下载体积。'],['更新包安全吗？','更新包会校验 SHA-256 和 RSA 签名，校验失败不会安装。'],['遇到问题怎么办？','保留程序目录 logs 下的相关日志，然后前往 GitHub Issues 反馈。']];
+---
+<BaseLayout title="常见问题 · GenshinPiano"><section class="page-hero shell"><span class="eyebrow">FAQ</span><h1>常见问题</h1><p>安装、格式、安全演奏与更新相关问题。</p></section><section class="section shell faq-list">{faqs.map(([q,a],i)=><details open={i===0}><summary>{q}<span>＋</span></summary><p>{a}</p></details>)}<div class="support-box"><div><h2>没有找到答案？</h2><p>提交问题时请附上复现步骤与相关日志。</p></div><a class="button button-secondary" href="https://github.com/tozyx/GenshinPiano/issues">前往 GitHub Issues</a></div></section></BaseLayout>

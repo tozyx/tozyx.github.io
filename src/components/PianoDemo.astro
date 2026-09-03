@@ -1,0 +1,39 @@
+---
+const isEnglish = Astro.url.pathname.startsWith('/en');
+---
+<div class="roll-window interactive-roll" data-piano-demo data-locale={isEnglish?'en':'zh'}>
+  <div class="window-bar"><i></i><i></i><i></i><span>Piano Roll · Interactive</span><button class="demo-play" type="button" data-demo-play aria-label={isEnglish?'Play piano demo':'播放琴键演示'}><span aria-hidden="true">▶</span> {isEnglish?'Demo':'演示'}</button></div>
+  <div class="keys" aria-hidden="true"></div>
+  <div class="roll" aria-hidden="true"><b class="note n1" data-roll-note="C4"></b><b class="note gold n2" data-roll-note="D4"></b><b class="note n3" data-roll-note="E4"></b><b class="note gold n4" data-roll-note="G4"></b><b class="note n5" data-roll-note="E4"></b><b class="note n6" data-roll-note="D4"></b><b class="note gold n7" data-roll-note="C4"></b><b class="playhead"></b></div>
+  <div class="demo-keyboard" aria-label={isEnglish?'Interactive piano keyboard':'可交互钢琴键盘'}>
+    <button type="button" class="piano-key white" data-note="C4" data-frequency="261.63"><span>C</span><kbd>A</kbd></button>
+    <button type="button" class="piano-key white" data-note="D4" data-frequency="293.66"><span>D</span><kbd>S</kbd></button>
+    <button type="button" class="piano-key white" data-note="E4" data-frequency="329.63"><span>E</span><kbd>D</kbd></button>
+    <button type="button" class="piano-key white" data-note="F4" data-frequency="349.23"><span>F</span><kbd>F</kbd></button>
+    <button type="button" class="piano-key white" data-note="G4" data-frequency="392.00"><span>G</span><kbd>G</kbd></button>
+    <button type="button" class="piano-key white" data-note="A4" data-frequency="440.00"><span>A</span><kbd>H</kbd></button>
+    <button type="button" class="piano-key white" data-note="B4" data-frequency="493.88"><span>B</span><kbd>J</kbd></button>
+    <span class="black-key b1"></span><span class="black-key b2"></span><span class="black-key b3"></span><span class="black-key b4"></span><span class="black-key b5"></span>
+  </div>
+  <div class="demo-status"><span data-demo-status aria-live="polite">{isEnglish?'Click the keys or use A–J to play':'点击琴键，或使用 A–J 键试听'}</span><span>120 BPM</span></div>
+</div>
+<script>
+  const root=document.querySelector<HTMLElement>('[data-piano-demo]');
+  if(root){
+    const keys=[...root.querySelectorAll<HTMLButtonElement>('[data-note]')];
+    const playButton=root.querySelector<HTMLButtonElement>('[data-demo-play]');
+    const status=root.querySelector<HTMLElement>('[data-demo-status]'); const english=root.dataset.locale==='en';
+    const keyMap:Record<string,string>={a:'C4',s:'D4',d:'E4',f:'F4',g:'G4',h:'A4',j:'B4'};
+    let context:AudioContext|undefined; let playing=false;
+    const tone=(key:HTMLButtonElement,duration=.32)=>{
+      context??=new AudioContext(); if(context.state==='suspended') context.resume();
+      const oscillator=context.createOscillator(); const gain=context.createGain(); const now=context.currentTime;
+      oscillator.type='triangle'; oscillator.frequency.value=Number(key.dataset.frequency); gain.gain.setValueAtTime(.0001,now); gain.gain.exponentialRampToValueAtTime(.16,now+.018); gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
+      oscillator.connect(gain).connect(context.destination); oscillator.start(now); oscillator.stop(now+duration+.03);
+    };
+    const activate=(note:string,duration=320)=>{ const key=keys.find(item=>item.dataset.note===note); if(!key)return; key.classList.add('active'); root.querySelectorAll(`[data-roll-note="${note}"]`).forEach(item=>item.classList.add('active')); tone(key,duration/1000); if(status)status.textContent=english?`Playing ${note}`:`正在试听 ${note}`; window.setTimeout(()=>{key.classList.remove('active');root.querySelectorAll(`[data-roll-note="${note}"]`).forEach(item=>item.classList.remove('active'));},duration); };
+    keys.forEach(key=>key.addEventListener('click',()=>activate(key.dataset.note!)));
+    window.addEventListener('keydown',(event)=>{if(event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;const note=keyMap[event.key.toLowerCase()];if(note){event.preventDefault();activate(note);}});
+    playButton?.addEventListener('click',async()=>{if(playing)return;playing=true;playButton.disabled=true;root.classList.add('playing');const melody=['C4','D4','E4','G4','E4','D4','C4'];for(const note of melody){activate(note,360);await new Promise(resolve=>window.setTimeout(resolve,420));}playing=false;playButton.disabled=false;root.classList.remove('playing');if(status)status.textContent=english?'Demo complete — try the keys':'演示完成，再弹几个音试试';});
+  }
+</script>

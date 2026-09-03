@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const groups = [
+ ['创作与编辑',['可编辑的 UTF-8 JSON .gpiano 工程','21 键、88 键与已用音域卷帘模式','框选、多选、复制、移动、缩放、撤销与重做','节拍长度、按键持续时间与吸附网格']],
+ ['导入与转换',['MIDI 单文件导入与目录批量转换','保留原始 MIDI 音高或映射至 21 键','MusicXML 小节、声部、和弦、连音与钢琴声部','旧版 .GenshinPiano 曲谱批量迁移']],
+ ['试听与演奏',['多音色本地试听、自然延音与选区循环','国服与国际服目标窗口检测','三秒安全倒计时与失焦自动暂停','Esc 暂停、Shift + F5 停止与强制释放按键']],
+ ['智能工具',['曲谱质量分析与 21 键音域调整','重复音符、重叠和超短音符可选清理','实验性数字简谱 OCR','独立、可签名更新的 OCR 附加包']],
+ ['桌面体验',['深浅主题与中英文界面','文件夹曲谱库、拖放打开和单实例运行','Windows .gpiano 文件关联','自动恢复未保存内容']],
+ ['更新与可靠性',['GitHub / GitCode 双更新源','断点下载与高版本优先选择','SHA-256 + RSA-3072 签名校验','无感更新、失败恢复与手动回滚']],
+];
+---
+<BaseLayout title="功能 · GenshinPiano" description="了解 GenshinPiano 的卷帘编辑、MIDI/MusicXML 导入、OCR、试听和安全游戏演奏能力。"><section class="page-hero shell"><span class="eyebrow">FEATURES</span><h1>为编曲和演奏<br />准备的完整工具箱</h1><p>从第一个音符到游戏内演奏，所有功能围绕清晰、可控和安全来设计。</p></section><section class="section shell"><div class="feature-detail-grid">{groups.map(([title,items],i) => <article class="card detail-card"><span class="card-index">0{i+1}</span><h2>{title}</h2><ul>{(items as string[]).map(item => <li>{item}</li>)}</ul></article>)}</div></section><section class="cta shell"><div><h2>现在开始创建曲谱</h2><p>选择适合你的 Windows 版本。</p></div><a class="button button-primary" href="/download/">前往下载</a></section></BaseLayout>
