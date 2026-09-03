@@ -1,0 +1,21 @@
+---
+interface Props { locale: 'zh' | 'en'; }
+const { locale } = Astro.props;
+const zh = locale === 'zh';
+const primary = zh ? '/screenshots/editor-zh.png' : '/screenshots/editor-en.png';
+const alternate = zh ? '/screenshots/editor-en.png' : '/screenshots/editor-zh.png';
+---
+<section class="product-showcase shell" aria-labelledby="product-showcase-title">
+  <div class="section-heading">
+    <span class="eyebrow">{zh ? '真实软件界面' : 'REAL APPLICATION'}</span>
+    <h2 id="product-showcase-title">{zh ? '专注于乐谱，也照顾每一个操作细节' : 'Focused on the score, polished in every detail'}</h2>
+    <p>{zh ? '实际运行于 Windows 的 GenshinPiano v3：曲谱库、21 键卷帘编辑、试听和演奏控制集中在同一工作区。' : 'GenshinPiano v3 running on Windows, with the score library, 21-key piano roll, preview, and performance controls in one workspace.'}</p>
+  </div>
+  <figure class="product-shot">
+    <img src={primary} alt={zh ? 'GenshinPiano v3 中文界面，展示曲谱库和 21 键卷帘编辑器' : 'GenshinPiano v3 English interface showing the score library and 21-key piano-roll editor'} width="1476" height="900" loading="lazy" decoding="async" />
+    <figcaption>
+      <span>{zh ? 'GenshinPiano v3 实际运行截图' : 'GenshinPiano v3 — actual application screenshot'}</span>
+      <a href={alternate}>{zh ? '查看英文界面 →' : 'View Chinese interface →'}</a>
+    </figcaption>
+  </figure>
+</section>

@@ -3,8 +3,8 @@ interface Props { locale: 'zh' | 'en'; }
 const { locale } = Astro.props;
 const pathname = Astro.url.pathname;
 const prefix = locale === 'en' ? '/en' : '';
-const labels = locale === 'en' ? ['Features','Download','Guide','Changelog','FAQ'] : ['功能','下载','指南','更新日志','FAQ'];
-const routes = ['/features/','/download/','/guide/','/changelog/','/faq/'];
+const labels = locale === 'en' ? ['Features','Download','Docs','Changelog','FAQ'] : ['功能','下载','文档','更新日志','FAQ'];
+const routes = ['/features/','/download/','/docs/','/changelog/','/faq/'];
 const links = routes.map((route,index) => [`${prefix}${route}`, labels[index]]);
 const alternatePath = locale === 'en' ? (pathname.replace(/^\/en(?=\/|$)/,'') || '/') : (pathname === '/' ? '/en/' : `/en${pathname}`);
 ---

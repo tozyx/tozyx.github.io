@@ -1,5 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const sections = [['当前开发版本',['新增 21 键、88 键与已用音域卷帘显示模式','MIDI 导入可选择保留 0–127 原始音高','加入 MusicXML 导入基础支持','优化冻结时间标尺、刻度和小节号绘制']],['可靠性与桌面体验',['GitHub / GitCode 双源更新与高版本选择','RSA-3072/SHA-256 发布包签名验证','安全回滚、断点下载与异常恢复','单实例、文件关联、通知和便携配置']],['OCR 与乐谱工具',['实验性数字简谱 OCR 与独立附加包','水印抑制、谱行/声部分析和节拍重建','曲谱质量分析及 21 键音域移动','五线谱 OMR 与校正预览仍在规划中']]];
+import ReleaseTimeline from '../components/ReleaseTimeline.astro';
 ---
-<BaseLayout title="更新日志 · GenshinPiano" description="查看 GenshinPiano v3 当前开发进展与近期功能。"><section class="page-hero shell"><span class="eyebrow">CHANGELOG</span><h1>持续打磨每一次演奏</h1><p>这里展示 v3 重构版本的主要开发进展；正式版本号与下载文件以 Releases 为准。</p></section><section class="section shell"><div class="timeline">{sections.map(([title,items],i) => <article><span class="timeline-dot"></span><div><span class="badge muted">{i===0?'最新进展':'已完成'}</span><h2>{title}</h2><ul>{(items as string[]).map(item=><li>{item}</li>)}</ul></div></article>)}</div><div class="center-action"><a class="text-link" href="https://github.com/tozyx/GenshinPiano/releases">查看所有 GitHub Releases →</a></div></section></BaseLayout>
+<BaseLayout title="更新日志 · GenshinPiano" description="从 GitHub Releases 自动同步 GenshinPiano 的正式版与预览版更新。"><section class="page-hero shell"><span class="eyebrow">CHANGELOG</span><h1>持续打磨每一次演奏</h1><p>版本说明直接来自 GitHub Releases，可筛选正式版和预览版，无需手工维护网页。</p></section><section class="section shell"><ReleaseTimeline locale="zh" /></section></BaseLayout>

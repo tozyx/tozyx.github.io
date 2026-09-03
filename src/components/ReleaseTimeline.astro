@@ -1,0 +1,50 @@
+---
+interface Props { locale: 'zh' | 'en'; }
+const { locale } = Astro.props;
+const zh = locale === 'zh';
+---
+<div class="release-feed" data-release-feed data-locale={locale}>
+  <div class="release-controls" role="group" aria-label={zh ? '版本筛选' : 'Release filters'}>
+    <button class="active" type="button" data-filter="stable">{zh ? '正式版' : 'Stable'}</button>
+    <button type="button" data-filter="preview">{zh ? '预览版' : 'Preview'}</button>
+    <button type="button" data-filter="all">{zh ? '全部' : 'All'}</button>
+  </div>
+  <p class="release-feed-status" data-release-status aria-live="polite">{zh ? '正在同步 GitHub Releases…' : 'Syncing GitHub Releases…'}</p>
+  <div class="release-feed-list" data-release-list></div>
+</div>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-release-feed]');
+  if (root) {
+    const locale = root.dataset.locale === 'en' ? 'en' : 'zh';
+    const list = root.querySelector<HTMLElement>('[data-release-list]');
+    const status = root.querySelector<HTMLElement>('[data-release-status]');
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    let releases: any[] = [];
+    let filter = 'stable';
+    const t = locale === 'zh'
+      ? { empty:'暂无对应版本。', failed:'暂时无法连接 GitHub，请前往 Releases 查看。', view:'查看版本与下载', prerelease:'预览版', stable:'正式版', noNotes:'此版本未提供说明。', synced:'已从 GitHub 自动同步' }
+      : { empty:'No matching releases yet.', failed:'GitHub is temporarily unavailable. Open Releases directly.', view:'View release and downloads', prerelease:'Preview', stable:'Stable', noNotes:'No release notes were provided.', synced:'Automatically synced from GitHub' };
+    const render = () => {
+      if (!list) return;
+      list.replaceChildren();
+      const shown = releases.filter(r => filter === 'all' || (filter === 'preview' ? r.prerelease : !r.prerelease));
+      if (!shown.length) { const p=document.createElement('p'); p.className='release-feed-empty'; p.textContent=t.empty; list.append(p); return; }
+      shown.forEach((release) => {
+        const article=document.createElement('article'); article.className='release-entry';
+        const head=document.createElement('div'); head.className='release-entry-head';
+        const title=document.createElement('h2'); title.textContent=release.name || release.tag_name;
+        const badge=document.createElement('span'); badge.className='badge '+(release.prerelease?'muted':''); badge.textContent=release.prerelease?t.prerelease:t.stable;
+        const time=document.createElement('time'); const date=new Date(release.published_at || release.created_at); time.dateTime=date.toISOString(); time.textContent=new Intl.DateTimeFormat(locale==='zh'?'zh-CN':'en-US',{dateStyle:'long'}).format(date);
+        head.append(title,badge,time);
+        const notes=document.createElement('p'); notes.className='release-notes'; const body=String(release.body||'').replace(/[#*_>\[\]]/g,'').replace(/\r/g,'').trim(); notes.textContent=body || t.noNotes;
+        const link=document.createElement('a'); link.className='text-link'; link.href=release.html_url; link.target='_blank'; link.rel='noreferrer'; link.textContent=t.view+' →';
+        article.append(head,notes,link); list.append(article);
+      });
+    };
+    buttons.forEach(button=>button.addEventListener('click',()=>{filter=button.dataset.filter||'stable';buttons.forEach(b=>b.classList.toggle('active',b===button));render();}));
+    fetch('https://api.github.com/repos/tozyx/GenshinPiano/releases?per_page=20',{headers:{Accept:'application/vnd.github+json'}})
+      .then(response=>{if(!response.ok)throw new Error(String(response.status));return response.json();})
+      .then(data=>{releases=Array.isArray(data)?data.filter(r=>!r.draft):[];if(status)status.textContent=t.synced+' · '+releases.length;render();})
+      .catch(()=>{if(status){status.textContent=t.failed;status.classList.add('error');}if(list){const a=document.createElement('a');a.className='button button-secondary';a.href='https://github.com/tozyx/GenshinPiano/releases';a.textContent='GitHub Releases →';list.append(a);}});
+  }
+</script>
