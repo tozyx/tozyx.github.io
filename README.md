@@ -1,15 +1,14 @@
 # GenshinPiano Website
 
-GenshinPiano 的官方网站仓库，提供产品介绍、软件下载、在线文档、更新日志以及中英文页面。
+[简体中文](./README.md) | [English](./README_EN.md)
 
-The official website repository for GenshinPiano, featuring software downloads, bilingual documentation, release notes, and an interactive 21-key practice studio with multiple instrument sounds.
+GenshinPiano 的官方网站仓库，提供产品介绍、软件下载、在线文档、更新日志以及中英文页面。
 
 - 网站：[https://tozyx.github.io/](https://tozyx.github.io/)
 - 软件源码：[tozyx/GenshinPiano](https://github.com/tozyx/GenshinPiano)
 - 发布版本：[GitHub Releases](https://github.com/tozyx/GenshinPiano/releases)
 
 > GenshinPiano 是非米哈游、HoYoverse 官方项目。本仓库只包含网站源码，不包含游戏本体或官方资源。
-> GenshinPiano is an unofficial fan-made project and is not affiliated with or endorsed by HoYoverse.
 
 ## 网站功能
 
