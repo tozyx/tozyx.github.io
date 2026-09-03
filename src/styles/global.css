@@ -292,3 +292,62 @@ body.practice-page-fullscreen .practice-intro { display:block }
 .practice-studio.page-expanded .cue-stage { padding-inline:max(32px,calc((100vw - 1380px)/2)) }
 .practice-studio.page-expanded .practice-footer { padding-inline:max(22px,calc((100vw - 1440px)/2)) }
 @media(max-width:900px){body.practice-page-fullscreen{overflow:auto}.practice-studio.page-expanded{position:static;width:auto;height:auto;display:block}}
+
+/* Mobile fullscreen: preserve the complete 21-key performance area. */
+.practice-settings-panel { display:contents }
+.practice-settings-toggle { display:none;width:40px;height:40px;padding:0;border:1px solid var(--line);border-radius:11px;color:#537071;background:#fff;cursor:pointer }
+.practice-settings-toggle svg { width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round }
+@media(max-width:900px),(pointer:coarse){
+ .practice-studio:fullscreen { --mobile-key-size:min(calc((100vw - 96px)/7),calc((100dvh - 176px)/3));grid-template-rows:52px 3px 112px minmax(0,1fr);overflow:hidden }
+ .practice-studio:fullscreen .practice-toolbar { justify-content:flex-end;height:52px;padding:6px 12px;gap:8px }
+ .practice-studio:fullscreen .practice-piece { display:none }
+ .practice-studio:fullscreen .practice-settings-toggle { display:grid;place-items:center;order:1;transition:color .22s ease,background-color .22s ease,transform .18s ease }
+ .practice-studio:fullscreen .practice-settings-toggle:hover,.practice-studio:fullscreen.settings-open .practice-settings-toggle { color:#fff;background:var(--aqua) }
+ .practice-studio:fullscreen .practice-fullscreen { order:2;margin-left:0 }
+ .practice-studio:fullscreen .practice-action { order:3;min-width:94px;height:40px }
+ .practice-studio:fullscreen .practice-settings-panel { position:fixed;z-index:100;top:0;right:0;bottom:0;display:flex;width:min(82vw,320px);align-items:stretch;flex-direction:column;gap:16px;padding:70px 18px 22px;border-left:1px solid var(--line);background:rgba(249,252,250,.98);box-shadow:-18px 0 42px rgba(31,70,69,.16);opacity:0;visibility:hidden;transform:translateX(100%);transition:transform .34s cubic-bezier(.22,.8,.25,1),opacity .24s ease,visibility 0s linear .34s }
+ .practice-studio:fullscreen.settings-open .practice-settings-panel { opacity:1;visibility:visible;transform:translateX(0);transition-delay:0s }
+ .practice-studio:fullscreen .practice-settings-panel .practice-mode { display:flex;width:100%;order:0 }
+ .practice-studio:fullscreen .practice-settings-panel .practice-mode button { flex:1 }
+ .practice-studio:fullscreen .practice-settings-panel .practice-speed,.practice-studio:fullscreen .practice-settings-panel .practice-instrument { display:grid;width:100%;grid-template-columns:48px 1fr;margin:0 }
+ .practice-studio:fullscreen .practice-settings-panel .custom-select { width:100%;min-width:0 }
+ .practice-studio:fullscreen .cue-stage { grid-template-columns:1fr;min-height:0;padding:8px 18px;gap:0 }
+ .practice-studio:fullscreen .cue-copy,.practice-studio:fullscreen .practice-stats,.practice-studio:fullscreen .loop-controls { display:none }
+ .practice-studio:fullscreen .cue-center { width:min(72vw,620px);margin:auto;gap:6px }
+ .practice-studio:fullscreen .cue-sequence { min-height:58px }
+ .practice-studio:fullscreen .cue-sequence .cue-note,.practice-studio:fullscreen .cue-sequence .cue-note.current { height:46px }
+ .practice-studio:fullscreen .practice-scrubber { grid-template-columns:26px 1fr 26px }
+ .practice-studio:fullscreen .practice-scrubber button { width:26px;height:26px }
+ .practice-studio:fullscreen .lyre-board { display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:4px;min-height:0;padding:6px 14px 8px;overflow:hidden;align-content:stretch }
+ .practice-studio:fullscreen .lyre-row { min-width:0!important;min-height:0;grid-template-columns:42px 1fr;gap:8px }
+ .practice-studio:fullscreen .lyre-register span { font-size:.58rem }
+ .practice-studio:fullscreen .lyre-register i { font-size:1rem }
+ .practice-studio:fullscreen .lyre-keys { height:100%;align-items:center;gap:6px }
+ .practice-studio:fullscreen .lyre-key { width:var(--mobile-key-size);max-width:100%;max-height:100%;justify-self:center }
+ .practice-studio:fullscreen .practice-footer { display:none }
+}
+@media(max-height:430px) and (orientation:landscape){.practice-studio:fullscreen{grid-template-rows:48px 3px 94px minmax(0,1fr)}.practice-studio:fullscreen .cue-sequence{min-height:48px}.practice-studio:fullscreen .cue-sequence .cue-note,.practice-studio:fullscreen .cue-sequence .cue-note.current{height:40px}.practice-studio:fullscreen .lyre-board{padding-block:3px}}
+@media(prefers-reduced-motion:reduce){.practice-studio:fullscreen .practice-settings-panel,.practice-settings-toggle{transition:none}}
+
+/* DevTools mobile emulation fallback: avoid desktop system fullscreen and emulate landscape in-page. */
+.practice-studio.mobile-preview { --mobile-key-size:min(calc((100% - 148px)/7),calc((100% - 174px)/3)) }
+.practice-studio.mobile-preview.virtual-landscape { position:fixed;top:50%;left:50%;width:100dvh;height:100dvw;transform:translate(-50%,-50%) rotate(90deg);transform-origin:center }
+.practice-studio.mobile-preview,.practice-studio.mobile-preview.virtual-landscape { grid-template-rows:52px 3px 112px minmax(0,1fr);overflow:hidden }
+.practice-studio.mobile-preview .practice-toolbar { justify-content:flex-end;height:52px;padding:6px 12px;gap:8px;flex-wrap:nowrap }
+.practice-studio.mobile-preview .practice-piece { display:none }
+.practice-studio.mobile-preview .practice-settings-toggle { display:grid;place-items:center;order:1 }
+.practice-studio.mobile-preview .practice-fullscreen { order:2;margin-left:0 }
+.practice-studio.mobile-preview .practice-action { order:3;min-width:94px;height:40px }
+.practice-studio.mobile-preview .cue-stage { grid-template-columns:1fr;min-height:0;padding:8px 18px;gap:0 }
+.practice-studio.mobile-preview .cue-copy,.practice-studio.mobile-preview .practice-stats,.practice-studio.mobile-preview .loop-controls,.practice-studio.mobile-preview .practice-footer { display:none }
+.practice-studio.mobile-preview .cue-center { width:min(72%,620px);margin:auto;gap:6px }
+.practice-studio.mobile-preview .lyre-board { display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:4px;min-height:0;padding:6px 14px 8px;overflow:hidden;align-content:stretch }
+.practice-studio.mobile-preview .lyre-row { min-width:0!important;min-height:0;grid-template-columns:42px 1fr;gap:8px }
+.practice-studio.mobile-preview .lyre-keys { height:100%;align-items:center;gap:6px }
+.practice-studio.mobile-preview .lyre-key { width:var(--mobile-key-size);max-width:100%;max-height:100%;justify-self:center }
+.practice-studio.mobile-preview .practice-settings-panel { position:fixed;z-index:100;top:0;right:0;bottom:0;display:flex;width:min(82%,320px);align-items:stretch;flex-direction:column;gap:16px;padding:70px 18px 22px;border-left:1px solid var(--line);background:rgba(249,252,250,.98);box-shadow:-18px 0 42px rgba(31,70,69,.16);opacity:0;visibility:hidden;transform:translateX(100%);transition:transform .34s cubic-bezier(.22,.8,.25,1),opacity .24s ease,visibility 0s linear .34s }
+.practice-studio.mobile-preview.settings-open .practice-settings-panel { opacity:1;visibility:visible;transform:translateX(0);transition-delay:0s }
+
+/* Size keys from the effective landscape axes in both real and simulated orientation. */
+.practice-studio.mobile-preview { --mobile-key-size:min(calc((100dvw - 148px)/7),calc((100dvh - 174px)/3)) }
+.practice-studio.mobile-preview.virtual-landscape { --mobile-key-size:min(calc((100dvh - 148px)/7),calc((100dvw - 174px)/3)) }
