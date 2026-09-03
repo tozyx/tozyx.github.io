@@ -1,0 +1,7 @@
+---
+interface Props { degree: number; }
+const icons=['do','re','mi','fa','so','la','ti'];
+const degree=Math.max(0,Math.min(6,Astro.props.degree));
+---
+<img class="practice-key-border" src="/practice/icons/genshin-border-v2.svg" alt="" width="156" height="156" draggable="false" />
+<span class="practice-key-icon" style={`--key-icon:url('/practice/icons/${icons[degree]}.svg')`} aria-hidden="true"></span>

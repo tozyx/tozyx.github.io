@@ -66,3 +66,229 @@ html[lang="en"] .hero-title { font-weight:650;line-height:1.1;letter-spacing:-.0
 @media(prefers-reduced-motion:reduce){.product-shot-track{transition:none}}
 
 @media(max-width:560px){.product-slide img{min-height:0;height:auto;object-fit:contain}}
+
+/* Practice lab */
+.practice-page { padding:70px 0 110px }.practice-intro { max-width:780px;margin-bottom:36px }.practice-intro h1 { margin:16px 0 14px;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.06;letter-spacing:-.04em }.practice-intro p { margin:0;color:var(--muted);font-size:1.04rem;line-height:1.7 }
+.practice-studio { overflow:hidden;border:1px solid rgba(31,89,87,.17);border-radius:28px;background:rgba(255,255,255,.83);box-shadow:0 28px 80px rgba(31,70,69,.13) }.practice-toolbar { display:flex;align-items:center;gap:18px;padding:18px 22px;border-bottom:1px solid var(--line);background:rgba(247,250,248,.92) }.practice-piece { display:grid;gap:3px;margin-right:auto }.practice-piece span { color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.11em }.practice-piece strong { font-size:.98rem }.practice-mode { display:flex;padding:4px;border:1px solid var(--line);border-radius:12px;background:#fff }.practice-mode button { padding:8px 13px;border:0;border-radius:8px;color:var(--muted);background:transparent;font:700 .78rem inherit;cursor:pointer }.practice-mode button.active { color:#fff;background:var(--aqua) }.practice-speed { display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.76rem }.practice-speed select { padding:8px;border:1px solid var(--line);border-radius:9px;color:inherit;background:#fff;font:inherit }.practice-action { min-width:100px;padding:10px 14px;border:0;border-radius:11px;color:#fff;background:#183f40;font:700 .8rem inherit;cursor:pointer }.practice-progress { height:3px;background:#e3ece8 }.practice-progress i { display:block;width:0;height:100%;background:linear-gradient(90deg,var(--aqua),#69cfc3);transition:width .25s }
+.cue-stage { display:grid;grid-template-columns:1fr 1.35fr auto;gap:28px;align-items:center;min-height:155px;padding:26px 32px;background:radial-gradient(circle at 50% 0,rgba(121,211,200,.16),transparent 64%) }.cue-copy { display:grid;gap:6px }.cue-copy span { color:var(--aqua);font-size:.67rem;font-weight:800;letter-spacing:.1em }.cue-copy strong { font-size:1.55rem }.cue-copy p { margin:0;color:var(--muted);font-size:.78rem }.cue-sequence { display:flex;align-items:center;justify-content:center;gap:10px }.cue-sequence span { display:grid;place-items:center;min-width:58px;height:48px;padding:0 10px;border:1px solid var(--line);border-radius:13px;color:#809091;background:rgba(255,255,255,.7);font:750 .8rem ui-monospace,Consolas,monospace;transition:.2s }.cue-sequence .current { min-width:82px;height:65px;color:#fff;border-color:transparent;background:#183f40;font-size:1.03rem;box-shadow:0 12px 28px rgba(24,63,64,.18) }.practice-stats { display:flex;gap:18px }.practice-stats span { display:grid;gap:3px;color:var(--muted);font-size:.66rem;text-align:center }.practice-stats b { color:#233839;font-size:1.05rem }
+.lyre-board { display:grid;gap:13px;padding:28px 32px 32px;border-block:1px solid var(--line);background:linear-gradient(145deg,#edf4f1,#f8f5ec) }.lyre-row { display:grid;grid-template-columns:62px 1fr;gap:14px;align-items:center }.lyre-register { display:grid;place-items:center;color:#76908d }.lyre-register span { font-size:.65rem;font-weight:800;letter-spacing:.08em }.lyre-register i { font-size:1.3rem;font-style:normal }.lyre-keys { display:grid;grid-template-columns:repeat(7,1fr);gap:11px }.lyre-key { position:relative;min-width:0;aspect-ratio:1.08;border:1px solid rgba(35,91,87,.17);border-radius:20px;color:#315253;background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(233,241,237,.95));box-shadow:0 7px 18px rgba(37,70,67,.07),inset 0 1px #fff;cursor:pointer;transition:transform .12s,box-shadow .18s,border-color .18s,background .18s }.lyre-key:before { content:"";position:absolute;inset:9px;border:1px solid rgba(34,112,106,.1);border-radius:14px;pointer-events:none }.lyre-key span { position:absolute;top:13px;left:0;right:0;color:#81928f;font-size:.64rem }.lyre-key strong { font-size:clamp(1rem,2vw,1.35rem) }.lyre-key i { position:absolute;left:50%;bottom:11px;width:5px;height:5px;border-radius:50%;background:#bdd0cc;transform:translateX(-50%) }.lyre-key:hover { transform:translateY(-2px);border-color:rgba(24,127,121,.36) }.lyre-key.target { border-color:#1a928a;background:linear-gradient(145deg,#e8faf6,#cceee6);box-shadow:0 0 0 3px rgba(24,127,121,.1),0 10px 24px rgba(24,127,121,.15);animation:key-pulse 1.1s ease-in-out infinite }.lyre-key.target i { background:var(--aqua);box-shadow:0 0 10px var(--aqua) }.lyre-key.pressed { transform:translateY(3px) scale(.97);background:#dceae6 }.lyre-key.correct { color:#fff;background:#278f7c }.lyre-key.wrong { color:#fff;background:#c76b5e }
+.practice-footer { display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 22px;color:var(--muted);font-size:.75rem }.practice-footer button { border:0;color:var(--aqua);background:transparent;font:700 .75rem inherit;cursor:pointer }
+@keyframes key-pulse { 50%{box-shadow:0 0 0 5px rgba(24,127,121,.07),0 12px 28px rgba(24,127,121,.18)} }
+@media(max-width:900px){.practice-toolbar{flex-wrap:wrap}.practice-piece{width:100%}.cue-stage{grid-template-columns:1fr}.cue-copy{text-align:center}.practice-stats{justify-content:center}.lyre-board{overflow-x:auto}.lyre-row{min-width:720px}}
+@media(max-width:560px){.practice-page{padding:52px 0 76px}.practice-intro h1{font-size:2.5rem}.practice-studio{border-radius:20px}.practice-toolbar{gap:10px;padding:15px}.practice-mode{order:3;width:100%}.practice-mode button{flex:1}.practice-speed{margin-left:auto}.cue-stage{padding:24px 18px}.cue-sequence{gap:6px}.cue-sequence span{min-width:45px}.cue-sequence .current{min-width:68px}.lyre-board{padding:22px 18px}.practice-footer{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.lyre-key.target{animation:none}.lyre-key,.practice-progress i{transition:none}}
+
+/* Original game-inspired scale glyphs */
+.lyre-key { display:grid;place-items:center;padding:0 }.practice-key-icon { position:absolute;top:10px;left:50%;width:38%;max-width:44px;height:auto;overflow:visible;color:#69918d;transform:translateX(-50%);filter:drop-shadow(0 3px 5px rgba(44,92,88,.08));transition:color .18s,filter .18s,transform .12s }.practice-key-icon .glyph-ring { fill:rgba(255,255,255,.32);stroke:currentColor;stroke-width:1.15 }.practice-key-icon .glyph-mark { fill:none;stroke:currentColor;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round }.lyre-key:first-child .glyph-mark,.lyre-key:nth-child(6) .glyph-mark { fill:currentColor;fill-opacity:.1 }.lyre-key .lyre-key-note { top:auto;bottom:7px;font-size:.57rem;letter-spacing:.04em }.lyre-key strong { position:absolute;left:50%;bottom:25px;transform:translateX(-50%);font-size:clamp(1rem,2vw,1.28rem) }.lyre-key>i { display:none }.lyre-key.target .practice-key-icon { color:#087c73;filter:drop-shadow(0 0 7px rgba(24,127,121,.42));transform:translateX(-50%) scale(1.08) }.lyre-key.correct .practice-key-icon,.lyre-key.wrong .practice-key-icon { color:#fff;filter:drop-shadow(0 0 6px rgba(255,255,255,.45)) }.lyre-key.correct .lyre-key-note,.lyre-key.wrong .lyre-key-note { color:rgba(255,255,255,.8) }
+
+/* Synchronized game key artwork */
+.practice-key-icon { object-fit:contain;pointer-events:none }.lyre-key.target .practice-key-icon { filter:drop-shadow(0 0 7px rgba(24,127,121,.48));transform:translateX(-50%) scale(1.1) }.lyre-key.correct .practice-key-icon,.lyre-key.wrong .practice-key-icon { filter:brightness(0) invert(1) drop-shadow(0 0 6px rgba(255,255,255,.45)) }
+
+/* Circular practice keys and timbre control */
+.practice-instrument { display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.76rem }.practice-instrument select { padding:8px;border:1px solid var(--line);border-radius:9px;color:inherit;background:#fff;font:inherit }.lyre-key { width:100%;max-width:116px;aspect-ratio:1;border-radius:50% }.lyre-key:before { inset:8px;border-radius:50% }.practice-key-icon { top:9%;width:39%;max-width:43px }.lyre-key strong { bottom:23% }.lyre-key .lyre-key-note { bottom:7% }
+@media(max-width:900px){.practice-instrument{margin-left:auto}.lyre-keys{justify-items:center}}
+@media(max-width:560px){.practice-instrument{margin-left:0}.practice-speed,.practice-instrument{flex:1}.practice-speed select,.practice-instrument select{min-width:0;width:100%}}
+
+/* Instrument-specific key treatment follows genshin-music's instrument data. */
+.practice-studio { --instrument-color:#69918d;--instrument-active:#278f7c }
+.practice-key-icon { color:var(--instrument-color) }
+.lyre-key.target { border-color:var(--instrument-active);background:color-mix(in srgb,var(--instrument-active) 16%,#fff);box-shadow:0 0 0 3px color-mix(in srgb,var(--instrument-active) 13%,transparent),0 10px 24px color-mix(in srgb,var(--instrument-active) 22%,transparent) }
+.lyre-key.target .practice-key-icon { color:var(--instrument-active);filter:drop-shadow(0 0 7px color-mix(in srgb,var(--instrument-active) 52%,transparent)) }
+.lyre-key.correct { background:var(--instrument-active) }
+.lyre-key.flat-note::after { content:'♭';position:absolute;top:12%;left:25%;z-index:1;color:var(--instrument-color);font:700 clamp(.72rem,1.35vw,1rem)/1 Georgia,serif;pointer-events:none }
+.lyre-key.flat-note.target::after { color:var(--instrument-active) }
+.lyre-key.flat-note.correct::after,.lyre-key.flat-note.wrong::after { color:#fff }
+
+/* Layered Genshin key, adapted from genshin-music's ZenNote. */
+.lyre-board { background:#39444a;padding:30px 34px }
+.lyre-register { color:#d8d0b5 }
+.lyre-key { border:0;background:#fffaf0;box-shadow:0 5px 10px rgba(12,20,24,.22);overflow:visible }
+.lyre-key::before { inset:7%;border:clamp(3px,.42vw,6px) solid #e1d6bd;background:#fffaf0;border-radius:50% }
+.practice-key-border { position:absolute;inset:5%;z-index:1;width:90%;height:90%;color:#eae3ce;pointer-events:none }
+.practice-key-icon { z-index:2;top:22%;width:49%;max-width:none;color:var(--instrument-color);filter:none }
+.lyre-key strong { z-index:3;bottom:12%;color:#a8aa79;font-family:Georgia,'Times New Roman',serif;font-size:clamp(.75rem,1.4vw,1.05rem);line-height:1 }
+.lyre-key .lyre-key-note { display:none }
+.lyre-key.flat-note::after { z-index:3;top:20%;left:22% }
+.lyre-key:hover { transform:translateY(-2px);box-shadow:0 8px 16px rgba(12,20,24,.3) }
+.lyre-key.target { background:#fffaf0;box-shadow:0 0 0 4px color-mix(in srgb,var(--instrument-active) 42%,transparent),0 0 24px color-mix(in srgb,var(--instrument-active) 50%,transparent) }
+.lyre-key.target::before { background:#fffaf0;border-color:color-mix(in srgb,var(--instrument-active) 42%,#e1d6bd) }
+.lyre-key.pressed,.lyre-key.correct { transform:scale(.91);background:var(--instrument-active) }
+.lyre-key.pressed::before,.lyre-key.correct::before { background:var(--instrument-active);border-color:color-mix(in srgb,var(--instrument-active) 70%,#fff) }
+.lyre-key.pressed .practice-key-border,.lyre-key.correct .practice-key-border { opacity:.22 }
+.lyre-key.pressed .practice-key-icon,.lyre-key.correct .practice-key-icon { color:#fff;filter:none }
+.lyre-key.pressed strong,.lyre-key.correct strong { color:#fff }
+.lyre-key.wrong::before { background:#c76b5e;border-color:#e3a198 }
+.lyre-key.wrong .practice-key-border { opacity:.2 }
+
+/* Keep the practice page light; the SVG uses an explicit fill because img content cannot inherit currentColor. */
+.lyre-board { background:linear-gradient(145deg,#edf4f1,#f8f5ec) }
+.lyre-register { color:#76908d }
+
+/* Match the original ZenNote proportions: the border SVG supplies both ring and star. */
+.lyre-key::before { display:none }
+.practice-key-border { inset:0;width:100%;height:100% }
+.lyre-key.flat-note::after { top:13%;left:8%;font-size:clamp(1.2rem,2.25vw,1.75rem);font-weight:700;-webkit-text-stroke:3px #fffaf0;paint-order:stroke fill;filter:drop-shadow(0 1px 0 rgba(91,84,55,.08)) }
+.lyre-key.flat-note.target::after { -webkit-text-stroke-color:#fffaf0 }
+.lyre-key.flat-note.pressed::after,.lyre-key.flat-note.correct::after,.lyre-key.flat-note.wrong::after { -webkit-text-stroke-color:var(--instrument-active) }
+
+/* SVG masks allow the note glyphs to use each instrument's configured fill color. */
+.practice-key-icon { display:block;height:49%;max-width:none;background:var(--instrument-color);-webkit-mask-image:var(--key-icon);mask-image:var(--key-icon);-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain }
+.lyre-key.target .practice-key-icon { background:var(--instrument-active) }
+.lyre-key.pressed .practice-key-icon,.lyre-key.correct .practice-key-icon,.lyre-key.wrong .practice-key-icon { background:#fff;filter:none }
+
+/* Override the generic key span rule so the masked glyph stays centered. */
+.lyre-key .practice-key-icon { position:absolute;left:50%;right:auto;top:5%;width:82%;height:82%;transform:translateX(-50%);background:var(--instrument-color) }
+.lyre-key.target .practice-key-icon { transform:translateX(-50%) scale(1.06) }
+.lyre-key.pressed .practice-key-icon,.lyre-key.correct .practice-key-icon { transform:translateX(-50%) scale(1) }
+
+.practice-studio:focus { outline:none }
+.practice-studio:focus-visible { outline:2px solid color-mix(in srgb,var(--aqua) 45%,transparent);outline-offset:4px }
+
+/* Seekable cue timeline and A/B practice loop. */
+.cue-center { display:grid;gap:13px;min-width:0 }
+.cue-sequence { min-height:68px;overflow:hidden }
+.cue-sequence .cue-note { display:grid;place-items:center;flex:0 1 58px;min-width:48px;height:48px;padding:0 10px;border:1px solid var(--line);border-radius:13px;color:#809091;background:rgba(255,255,255,.72);font:750 .8rem ui-monospace,Consolas,monospace;cursor:pointer;transition:opacity .25s,transform .3s,border-color .2s,background .2s;animation:cue-shift-left .32s cubic-bezier(.22,.75,.25,1) both }
+.cue-sequence .cue-note.past { opacity:.32;transform:scale(.88) }
+.cue-sequence .cue-note.future { opacity:.68 }
+.cue-sequence .cue-note.current { flex-basis:82px;min-width:72px;height:64px;color:#fff;border-color:transparent;background:#183f40;font-size:1.04rem;box-shadow:0 12px 28px rgba(24,63,64,.18);opacity:1 }
+.cue-sequence .cue-note:hover { opacity:1;border-color:color-mix(in srgb,var(--aqua) 48%,var(--line)) }
+.cue-sequence .cue-note.cue-arrive { animation:cue-current-arrive .38s cubic-bezier(.2,.85,.3,1.2) both }
+.practice-scrubber { display:grid;grid-template-columns:30px 1fr 30px;gap:9px;align-items:center }
+.practice-scrubber button { width:30px;height:30px;padding:0;border:1px solid var(--line);border-radius:50%;color:var(--aqua);background:#fff;font:700 1.25rem/1 inherit;cursor:pointer }
+.practice-scrubber input { width:100%;height:5px;margin:0;appearance:none;border-radius:999px;background:linear-gradient(90deg,var(--aqua) 0 var(--seek-progress,0%),#dce7e3 var(--seek-progress,0%) 100%);cursor:grab }
+.practice-scrubber input:active { cursor:grabbing }
+.practice-scrubber input::-webkit-slider-thumb { width:18px;height:18px;appearance:none;border:4px solid #fff;border-radius:50%;background:var(--aqua);box-shadow:0 2px 8px rgba(24,63,64,.3) }
+.practice-scrubber input::-moz-range-thumb { width:11px;height:11px;border:4px solid #fff;border-radius:50%;background:var(--aqua);box-shadow:0 2px 8px rgba(24,63,64,.3) }
+.loop-controls { display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap }
+.loop-controls button { padding:5px 9px;border:1px solid var(--line);border-radius:8px;color:var(--muted);background:rgba(255,255,255,.78);font:700 .66rem inherit;cursor:pointer }
+.loop-controls button:hover,.loop-controls button.active { color:#fff;border-color:var(--aqua);background:var(--aqua) }
+.loop-controls button:disabled { opacity:.38;cursor:default }
+.loop-controls span { min-width:120px;color:var(--muted);font-size:.66rem;text-align:center }
+@keyframes cue-shift-left { from{opacity:0;translate:18px 0} to{translate:0 0} }
+@keyframes cue-current-arrive { 0%{opacity:.35;transform:scale(.72) translateX(16px)} 65%{transform:scale(1.09)} 100%{opacity:1;transform:scale(1)} }
+@media(max-width:900px){.cue-center{width:min(100%,620px);margin-inline:auto}}
+@media(max-width:560px){.cue-sequence .cue-note{flex-basis:42px;min-width:38px;padding-inline:6px}.cue-sequence .cue-note.current{flex-basis:62px;min-width:58px}.loop-controls span{width:100%}}
+@media(prefers-reduced-motion:reduce){.cue-sequence .cue-note,.cue-sequence .cue-note.cue-arrive{animation:none}}
+
+/* Fixed-center cue carousel: the queue slides while the active slot stays centered. */
+.cue-sequence { display:grid;grid-template-columns:repeat(5,64px);gap:10px;justify-content:center;align-items:center;min-height:68px;overflow:visible;will-change:transform }
+.cue-sequence .cue-note { width:64px;min-width:64px;height:48px;animation:none;transition:opacity .28s ease,color .28s ease,background-color .28s ease,border-color .28s ease,box-shadow .28s ease }
+.cue-sequence .cue-note.current { width:64px;min-width:64px;height:64px;animation:cue-current-highlight .4s ease-out both }
+.cue-sequence .cue-note.placeholder { visibility:hidden;pointer-events:none }
+@keyframes cue-current-highlight { from{color:#537071;background:#e5f1ee;border-color:color-mix(in srgb,var(--aqua) 55%,var(--line));box-shadow:0 0 0 rgba(24,63,64,0)} to{color:#fff;background:#183f40;border-color:transparent;box-shadow:0 12px 28px rgba(24,63,64,.18)} }
+@media(max-width:560px){.cue-sequence{grid-template-columns:repeat(5,48px);gap:6px}.cue-sequence .cue-note,.cue-sequence .cue-note.current{width:48px;min-width:48px}.cue-sequence .cue-note.current{height:60px}}
+@media(prefers-reduced-motion:reduce){.cue-sequence{transform:none!important}.cue-sequence .cue-note.current{animation:none}}
+
+/* Continuous cue reel with a stationary focus lens. */
+.cue-center { position:relative }
+.cue-sequence { display:flex;justify-content:flex-start;gap:10px;min-height:72px;padding:4px calc(50% - 32px);overflow-x:hidden;overflow-y:visible;scroll-behavior:smooth;scrollbar-width:none;will-change:scroll-position }
+.cue-sequence::-webkit-scrollbar { display:none }
+.cue-sequence .cue-note,.cue-sequence .cue-note.current { flex:0 0 64px;width:64px;min-width:64px;height:56px;padding:0 8px;border:1px solid var(--line);border-radius:13px;color:#718687;background:rgba(255,255,255,.78);box-shadow:none;font:750 .82rem ui-monospace,Consolas,monospace;opacity:.72;transform:none;animation:none;transition:opacity .26s ease,color .26s ease,filter .26s ease,transform .26s ease }
+.cue-sequence .cue-note.past { opacity:.3 }
+.cue-sequence .cue-note.current { color:#183f40;opacity:1;filter:brightness(1.04) saturate(1.08);transform:scale(1.08) }
+.cue-sequence .cue-note.future { opacity:.66 }
+.cue-center::before { content:'';position:absolute;z-index:4;top:0;left:50%;width:76px;height:68px;border:1px solid rgba(24,127,121,.38);border-radius:17px;box-shadow:0 8px 24px rgba(24,63,64,.12),inset 0 0 0 4px rgba(255,255,255,.42);transform:translateX(-50%);pointer-events:none }
+@media(max-width:560px){.cue-sequence{grid-template-columns:none;gap:7px;padding-inline:calc(50% - 25px)}.cue-sequence .cue-note,.cue-sequence .cue-note.current{flex-basis:50px;width:50px;min-width:50px;height:52px}.cue-center::before{width:60px;height:64px}}
+@media(prefers-reduced-motion:reduce){.cue-sequence{scroll-behavior:auto}.cue-sequence .cue-note{transition:none}}
+
+/* Focus belongs to the note itself; transition it as notes enter and leave center. */
+.cue-center::before { display:none }
+.cue-sequence .cue-note,.cue-sequence .cue-note.current { box-sizing:border-box;transition:opacity .36s cubic-bezier(.22,.75,.25,1),color .36s cubic-bezier(.22,.75,.25,1),background-color .36s cubic-bezier(.22,.75,.25,1),border-color .36s cubic-bezier(.22,.75,.25,1),box-shadow .36s cubic-bezier(.22,.75,.25,1),filter .36s cubic-bezier(.22,.75,.25,1),transform .36s cubic-bezier(.22,.75,.25,1) }
+.cue-sequence .cue-note.current { color:#183f40;border-color:#315f60;background:rgba(255,255,255,.96);box-shadow:0 8px 22px rgba(24,63,64,.15),inset 0 0 0 1px rgba(49,95,96,.12);filter:brightness(1.03) saturate(1.06);transform:scale(1.08) }
+.cue-sequence .cue-note.past { border-color:color-mix(in srgb,var(--line) 74%,transparent) }
+.cue-sequence .cue-note.future { border-color:var(--line) }
+
+/* Quiet scrubber at rest, full affordance on interaction. */
+.practice-scrubber input { height:3px;opacity:.46;background:linear-gradient(90deg,color-mix(in srgb,var(--aqua) 58%,#dce7e3) 0 var(--seek-progress,0%),#e5ece9 var(--seek-progress,0%) 100%);transition:height .22s ease,opacity .22s ease,background .22s ease,filter .22s ease }
+.practice-scrubber input:hover,.practice-scrubber input:focus-visible,.practice-scrubber input:active { height:5px;opacity:1;background:linear-gradient(90deg,var(--aqua) 0 var(--seek-progress,0%),#dce7e3 var(--seek-progress,0%) 100%);filter:drop-shadow(0 2px 5px rgba(24,127,121,.12));outline:none }
+.practice-scrubber input::-webkit-slider-thumb { width:11px;height:11px;border-width:3px;opacity:.7;transition:width .22s ease,height .22s ease,border-width .22s ease,opacity .22s ease,box-shadow .22s ease }
+.practice-scrubber input:hover::-webkit-slider-thumb,.practice-scrubber input:focus-visible::-webkit-slider-thumb,.practice-scrubber input:active::-webkit-slider-thumb { width:18px;height:18px;border-width:4px;opacity:1;box-shadow:0 3px 10px rgba(24,63,64,.3) }
+.practice-scrubber input::-moz-range-thumb { width:7px;height:7px;border-width:3px;opacity:.7;transition:width .22s ease,height .22s ease,border-width .22s ease,opacity .22s ease,box-shadow .22s ease }
+.practice-scrubber input:hover::-moz-range-thumb,.practice-scrubber input:focus-visible::-moz-range-thumb,.practice-scrubber input:active::-moz-range-thumb { width:11px;height:11px;border-width:4px;opacity:1;box-shadow:0 3px 10px rgba(24,63,64,.3) }
+@media(prefers-reduced-motion:reduce){.practice-scrubber input,.practice-scrubber input::-webkit-slider-thumb,.practice-scrubber input::-moz-range-thumb{transition:none}}
+
+/* Animated visual layer over the native range input. */
+.seek-track { position:relative;width:100%;height:20px;--seek-progress:0% }
+.seek-track::before,.seek-track>i { content:'';position:absolute;top:50%;left:0;height:3px;border-radius:999px;transform:translateY(-50%);pointer-events:none }
+.seek-track::before { width:100%;background:#e5ece9;transition:height .22s ease,background-color .22s ease }
+.seek-track>i { width:var(--seek-progress);background:color-mix(in srgb,var(--aqua) 58%,#dce7e3);transition:width .34s cubic-bezier(.22,.75,.25,1),height .22s ease,background-color .22s ease }
+.seek-track>b { position:absolute;z-index:2;top:50%;left:var(--seek-progress);width:11px;height:11px;border:3px solid #fff;border-radius:50%;background:var(--aqua);box-shadow:0 2px 8px rgba(24,63,64,.2);opacity:.7;transform:translate(-50%,-50%);pointer-events:none;transition:left .34s cubic-bezier(.22,.75,.25,1),width .22s ease,height .22s ease,border-width .22s ease,opacity .22s ease,box-shadow .22s ease }
+.seek-track>input { position:absolute;z-index:3;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:grab }
+.seek-track>input:active { cursor:grabbing }
+.seek-track:has(input:hover)::before,.seek-track:has(input:focus-visible)::before,.seek-track:has(input:active)::before,.seek-track:has(input:hover)>i,.seek-track:has(input:focus-visible)>i,.seek-track:has(input:active)>i { height:5px }
+.seek-track:has(input:hover)>i,.seek-track:has(input:focus-visible)>i,.seek-track:has(input:active)>i { background:var(--aqua) }
+.seek-track:has(input:hover)>b,.seek-track:has(input:focus-visible)>b,.seek-track:has(input:active)>b { width:18px;height:18px;border-width:4px;opacity:1;box-shadow:0 3px 10px rgba(24,63,64,.3) }
+.seek-track:has(input:active)>i,.seek-track:has(input:active)>b { transition-duration:.07s }
+@media(prefers-reduced-motion:reduce){.seek-track::before,.seek-track>i,.seek-track>b{transition:none}}
+
+/* Unified motion for practice controls. */
+.practice-mode { position:relative;isolation:isolate;overflow:hidden;transition:border-color .24s ease,box-shadow .24s ease,transform .18s ease }
+.practice-mode::before { content:'';position:absolute;z-index:-1;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:8px;background:var(--aqua);box-shadow:0 4px 12px rgba(24,127,121,.18);transform:translateX(0);transition:transform .32s cubic-bezier(.22,.8,.25,1),background-color .24s ease,box-shadow .24s ease }
+.practice-mode[data-active='timed']::before { transform:translateX(100%) }
+.practice-mode button,.practice-mode button.active { position:relative;color:var(--muted);background:transparent;transition:color .25s ease,transform .16s ease }
+.practice-mode button.active { color:#fff }
+.practice-mode button:hover { color:#183f40 }
+.practice-mode button.active:hover { color:#fff }
+.practice-mode button:active { transform:scale(.95) }
+.practice-mode:hover,.practice-mode:focus-within { border-color:color-mix(in srgb,var(--aqua) 42%,var(--line));box-shadow:0 5px 16px rgba(31,70,69,.08) }
+.practice-speed,.practice-instrument { transition:color .24s ease,transform .2s ease }
+.practice-speed:focus-within,.practice-instrument:focus-within { color:var(--aqua) }
+.practice-speed select,.practice-instrument select { transition:border-color .24s ease,box-shadow .24s ease,background-color .24s ease,transform .18s ease }
+.practice-speed select:hover,.practice-instrument select:hover { border-color:color-mix(in srgb,var(--aqua) 46%,var(--line));background:#fbfefd;transform:translateY(-1px) }
+.practice-speed select:focus,.practice-instrument select:focus { outline:none;border-color:var(--aqua);box-shadow:0 0 0 3px rgba(24,127,121,.11),0 6px 18px rgba(31,70,69,.08);transform:translateY(-1px) }
+.practice-speed select:active,.practice-instrument select:active { transform:translateY(0) scale(.985) }
+.practice-action { transition:transform .18s ease,background-color .24s ease,box-shadow .24s ease }
+.practice-action:hover { background:#205556;box-shadow:0 8px 20px rgba(24,63,64,.18);transform:translateY(-2px) }
+.practice-action:active { box-shadow:0 3px 9px rgba(24,63,64,.14);transform:translateY(0) scale(.97) }
+.practice-action:focus-visible,.practice-mode button:focus-visible { outline:2px solid color-mix(in srgb,var(--aqua) 62%,#fff);outline-offset:2px }
+@media(prefers-reduced-motion:reduce){.practice-mode,.practice-mode::before,.practice-mode button,.practice-speed,.practice-instrument,.practice-speed select,.practice-instrument select,.practice-action{transition:none}}
+
+/* Animated custom selects; native controls remain as the synchronized data source. */
+.practice-toolbar { position:relative;z-index:8 }
+.native-select { position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important }
+.custom-select { position:relative;min-width:84px }
+.practice-instrument .custom-select { min-width:170px }
+.custom-select-trigger { display:flex;width:100%;min-height:36px;align-items:center;justify-content:space-between;gap:16px;padding:7px 11px;border:1px solid var(--line);border-radius:9px;color:var(--muted);background:#fff;font:inherit;cursor:pointer;transition:border-color .24s ease,box-shadow .24s ease,background-color .24s ease,transform .18s ease }
+.custom-select-trigger:hover,.custom-select.open .custom-select-trigger { border-color:color-mix(in srgb,var(--aqua) 48%,var(--line));background:#fbfefd;box-shadow:0 5px 16px rgba(31,70,69,.09) }
+.custom-select-trigger i { width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .3s cubic-bezier(.22,.8,.25,1),color .24s ease }
+.custom-select.open .custom-select-trigger i { color:var(--aqua);transform:translateY(2px) rotate(225deg) }
+.custom-select-menu { position:absolute;z-index:30;top:calc(100% + 7px);left:0;width:max-content;min-width:100%;max-height:260px;overflow:auto;padding:5px;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.98);box-shadow:0 16px 38px rgba(31,70,69,.16);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px) scale(.98);transform-origin:top;transition:opacity .22s ease,transform .28s cubic-bezier(.22,.8,.25,1),visibility 0s linear .28s }
+.custom-select.open .custom-select-menu { opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1);transition-delay:0s }
+.custom-select-option { display:flex;width:100%;align-items:center;padding:8px 10px;border:0;border-radius:7px;color:var(--muted);background:transparent;font:inherit;text-align:left;white-space:nowrap;cursor:pointer;transition:color .18s ease,background-color .18s ease,transform .16s ease }
+.custom-select-option:hover,.custom-select-option:focus-visible { color:#183f40;background:#edf6f3;outline:none;transform:translateX(2px) }
+.custom-select-option.selected { color:var(--aqua);background:#f0f8f6;font-weight:700 }
+@media(max-width:560px){.custom-select,.practice-instrument .custom-select{width:100%;min-width:0}.custom-select-menu{right:0;left:auto;max-width:min(82vw,280px)}}
+@media(prefers-reduced-motion:reduce){.custom-select-trigger,.custom-select-trigger i,.custom-select-menu,.custom-select-option{transition:none}}
+
+/* Quieter practice heading and fullscreen presentation. */
+.practice-intro { max-width:700px;margin-bottom:30px }
+.practice-intro h1 { margin:13px 0 11px;font-size:clamp(2rem,3.7vw,3.25rem);font-weight:720;line-height:1.12;letter-spacing:-.03em }
+.practice-intro p { max-width:660px;font-size:.96rem;line-height:1.65 }
+.practice-fullscreen { position:relative;flex:0 0 40px;width:40px;height:40px;padding:0;border:1px solid var(--line);border-radius:11px;color:#537071;background:#fff;cursor:pointer;transition:color .24s ease,border-color .24s ease,background-color .24s ease,box-shadow .24s ease,transform .18s ease }
+.practice-fullscreen svg { position:absolute;inset:9px;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:opacity .24s ease,transform .32s cubic-bezier(.22,.8,.25,1) }
+.practice-fullscreen .restore-icon { opacity:0;transform:rotate(-90deg) scale(.68) }
+.practice-fullscreen.active .expand-icon { opacity:0;transform:rotate(90deg) scale(.68) }
+.practice-fullscreen.active .restore-icon { opacity:1;transform:rotate(0) scale(1) }
+.practice-fullscreen:hover { color:#fff;border-color:var(--aqua);background:var(--aqua);box-shadow:0 7px 18px rgba(24,127,121,.2);transform:translateY(-2px) }
+.practice-fullscreen:active { transform:translateY(0) scale(.94) }
+.practice-fullscreen:focus-visible { outline:2px solid color-mix(in srgb,var(--aqua) 58%,#fff);outline-offset:2px }
+.practice-studio.is-fullscreen { border-radius:0;transition:border-radius .3s ease,background-color .3s ease,box-shadow .3s ease }
+.practice-studio:fullscreen { width:100vw;height:100vh;display:grid;grid-template-rows:auto 3px auto minmax(0,1fr) auto;border:0;background:#f7faf8;box-shadow:none }
+.practice-studio:fullscreen .lyre-board { min-height:0;align-content:center;overflow:auto }
+body.practice-page-fullscreen .practice-page { max-width:none;padding:20px }
+body.practice-page-fullscreen .practice-intro { display:none }
+body.practice-page-fullscreen .practice-studio { max-height:calc(100vh - 40px) }
+@media(max-width:900px){.practice-fullscreen{margin-left:auto}.practice-studio:fullscreen .practice-toolbar{padding:10px 14px;gap:10px;flex-wrap:nowrap}.practice-studio:fullscreen .practice-piece{width:auto}.practice-studio:fullscreen .cue-stage{grid-template-columns:minmax(150px,.8fr) minmax(310px,1.4fr) auto;min-height:122px;padding:14px 20px;gap:18px}.practice-studio:fullscreen .cue-copy{text-align:left}.practice-studio:fullscreen .lyre-board{padding:14px 24px;gap:8px}.practice-studio:fullscreen .lyre-row{min-width:650px}.practice-studio:fullscreen .practice-footer{padding:8px 18px}}
+@media(max-width:560px){.practice-intro h1{font-size:2rem}.practice-intro{margin-bottom:24px}}
+@media(prefers-reduced-motion:reduce){.practice-fullscreen,.practice-fullscreen svg,.practice-studio.is-fullscreen{transition:none}}
+
+/* Desktop expands inside the browser viewport without invoking display fullscreen. */
+body.practice-page-fullscreen { overflow:hidden }
+body.practice-page-fullscreen .practice-page { max-width:var(--shell);padding:70px 24px 110px }
+body.practice-page-fullscreen .practice-intro { display:block }
+.practice-studio.page-expanded { position:fixed;z-index:1000;inset:0;width:100vw;height:100dvh;display:grid;grid-template-rows:auto 3px auto minmax(0,1fr) auto;border:0;border-radius:0;background:#f7faf8;box-shadow:none }
+.practice-studio.page-expanded .lyre-board { min-height:0;align-content:center;overflow:auto }
+.practice-studio.page-expanded .practice-toolbar { padding-inline:max(22px,calc((100vw - 1440px)/2)) }
+.practice-studio.page-expanded .cue-stage { padding-inline:max(32px,calc((100vw - 1380px)/2)) }
+.practice-studio.page-expanded .practice-footer { padding-inline:max(22px,calc((100vw - 1440px)/2)) }
+@media(max-width:900px){body.practice-page-fullscreen{overflow:auto}.practice-studio.page-expanded{position:static;width:auto;height:auto;display:block}}
