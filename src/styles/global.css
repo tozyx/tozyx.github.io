@@ -351,3 +351,65 @@ body.practice-page-fullscreen .practice-intro { display:block }
 /* Size keys from the effective landscape axes in both real and simulated orientation. */
 .practice-studio.mobile-preview { --mobile-key-size:min(calc((100dvw - 148px)/7),calc((100dvh - 174px)/3)) }
 .practice-studio.mobile-preview.virtual-landscape { --mobile-key-size:min(calc((100dvh - 148px)/7),calc((100dvw - 174px)/3)) }
+
+/* Keep the native range interactive but never visually expose its track or thumb. */
+.practice-scrubber .seek-track>input,
+.practice-scrubber .seek-track>input:hover,
+.practice-scrubber .seek-track>input:focus,
+.practice-scrubber .seek-track>input:focus-visible,
+.practice-scrubber .seek-track>input:active {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  margin:0;
+  appearance:none;
+  -webkit-appearance:none;
+  opacity:0!important;
+  background:transparent!important;
+  filter:none!important;
+  outline:none;
+  cursor:grab;
+}
+.practice-scrubber .seek-track>input:active { cursor:grabbing }
+.practice-scrubber .seek-track>input::-webkit-slider-runnable-track { height:100%;background:transparent;border:0 }
+.practice-scrubber .seek-track>input::-webkit-slider-thumb { width:1px;height:1px;margin:0;border:0;appearance:none;-webkit-appearance:none;background:transparent;box-shadow:none;opacity:0 }
+.practice-scrubber .seek-track>input::-moz-range-track,
+.practice-scrubber .seek-track>input::-moz-range-progress { height:100%;border:0;background:transparent }
+.practice-scrubber .seek-track>input::-moz-range-thumb { width:1px;height:1px;border:0;background:transparent;box-shadow:none;opacity:0 }
+.seek-track::before,.seek-track>i,.seek-track>b { transition-timing-function:cubic-bezier(.22,.75,.25,1) }
+.seek-track:has(input:focus-visible)>b { box-shadow:0 0 0 4px rgba(24,127,121,.13),0 3px 10px rgba(24,63,64,.3) }
+.seek-track:has(input:focus-visible)::before { background:#dce8e4 }
+.seek-track:not(:has(input:hover,input:focus-visible,input:active))::before { height:3px;background:#e5ece9 }
+.seek-track:not(:has(input:hover,input:focus-visible,input:active))>i { height:3px;background:color-mix(in srgb,var(--aqua) 58%,#dce7e3) }
+.seek-track:not(:has(input:hover,input:focus-visible,input:active))>b { width:11px;height:11px;border-width:3px;opacity:.7;box-shadow:0 2px 8px rgba(24,63,64,.2) }
+
+/* Keep loop controls on the timeline row to preserve vertical space. */
+.cue-center { gap:9px }
+.practice-scrubber { grid-template-columns:30px minmax(120px,1fr) 30px auto;gap:8px }
+.practice-scrubber .loop-controls { display:flex;align-items:center;justify-content:flex-start;gap:5px;flex-wrap:nowrap;margin-left:4px }
+.practice-scrubber .loop-controls button { width:30px;height:30px;padding:0;border-radius:9px;font-size:.67rem }
+.practice-scrubber .loop-controls button:last-of-type { font-size:.92rem }
+.practice-scrubber .loop-controls span { min-width:42px;max-width:66px;padding-left:2px;overflow:hidden;color:#78908e;font-size:.64rem;text-align:left;text-overflow:ellipsis;white-space:nowrap }
+.practice-scrubber .loop-controls button,.practice-scrubber .loop-controls span { transition:color .2s ease,background-color .2s ease,border-color .2s ease,opacity .2s ease,transform .18s ease }
+.practice-scrubber .loop-controls button:hover:not(:disabled) { transform:translateY(-1px) }
+.practice-scrubber .loop-controls button:active:not(:disabled) { transform:scale(.94) }
+@media(max-width:720px){.practice-scrubber{grid-template-columns:28px minmax(100px,1fr) 28px}.practice-scrubber .loop-controls{grid-column:1/-1;justify-content:center;margin-left:0}}
+@media(max-width:900px),(pointer:coarse){.practice-studio:fullscreen .practice-scrubber{grid-template-columns:26px 1fr 26px}.practice-studio:fullscreen .practice-scrubber .loop-controls{display:none}}
+.practice-studio.mobile-preview .practice-scrubber { grid-template-columns:26px 1fr 26px }
+.practice-studio.mobile-preview .practice-scrubber .loop-controls { display:none }
+
+/* Local .gpiano score import. */
+.practice-studio { position:relative }
+.practice-footer-actions { display:flex;align-items:center;gap:8px;flex:0 0 auto }
+.practice-import { position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 13px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font-size:.72rem;font-weight:700;cursor:pointer;transition:color .2s ease,border-color .2s ease,background-color .2s ease,transform .18s ease,box-shadow .2s ease }
+.practice-import:hover { color:var(--aqua);border-color:color-mix(in srgb,var(--aqua) 42%,var(--line));box-shadow:0 5px 14px rgba(24,63,64,.08);transform:translateY(-1px) }
+.practice-import:active { transform:scale(.97) }
+.practice-import input { position:absolute;width:1px;height:1px;opacity:0;pointer-events:none }
+.practice-import:focus-within { outline:3px solid rgba(24,127,121,.14);outline-offset:2px }
+.practice-drop-overlay { position:absolute;z-index:150;inset:10px;display:grid;place-content:center;gap:6px;border:2px dashed color-mix(in srgb,var(--aqua) 70%,white);border-radius:24px;background:rgba(244,251,248,.93);color:var(--aqua);text-align:center;opacity:0;visibility:hidden;transform:scale(.985);backdrop-filter:blur(8px);transition:opacity .2s ease,transform .25s cubic-bezier(.22,.8,.25,1),visibility 0s linear .25s;pointer-events:none }
+.practice-drop-overlay strong { font-size:1.15rem }
+.practice-drop-overlay span { color:var(--muted);font-size:.72rem;letter-spacing:.08em }
+.practice-drop-overlay.visible { opacity:1;visibility:visible;transform:scale(1);transition-delay:0s }
+@media(max-width:720px){.practice-footer-actions{gap:4px}.practice-import{min-height:30px;padding:0 9px;font-size:.65rem}}
+@media(max-width:900px),(pointer:coarse){.practice-studio:fullscreen .practice-import,.practice-studio.mobile-preview .practice-import{display:none}}
